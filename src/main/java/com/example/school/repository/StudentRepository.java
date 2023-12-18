@@ -3,7 +3,7 @@ package com.example.school.repository;
 import com.example.school.model.*;
 import java.util.*;
 
-public interface StudentRepository{
+public interface StudentRepository {
     ArrayList<Student> addStudent();
 
     Student getStudentById(int studentId);
@@ -11,5 +11,6 @@ public interface StudentRepository{
     Student addStudent(Student student);
 
     Student updateStudent(int studentId, Student student);
+
     void deleteStudent(int studentId);
 }
