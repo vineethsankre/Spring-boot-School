@@ -32,7 +32,7 @@ public class StudentController {
         return studentH2Service.updateStudent(studentId, student);
     }
 
-    @DeleteMapping("/todos/{id}")
+    @DeleteMapping("/students/{studentId}")
     public void deleteStudent(@PathVariable int studentId) {
         studentH2Service.deleteStudent(studentId);
     }
