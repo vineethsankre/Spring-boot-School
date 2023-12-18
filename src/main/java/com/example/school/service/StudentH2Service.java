@@ -16,7 +16,7 @@ public class StudentH2Service implements StudentRepository {
     JdbcTemplate db;
 
     @Override
-    public ArrayList<Student> addStudent() {
+    public ArrayList<Student> getAllStudents() {
         List<Student> studentList = db.query("SELECT * FROM STUDENT", new StudentRowMapper());
         ArrayList<Student> students = new ArrayList<>(studentList);
         return students;
@@ -41,6 +41,19 @@ public class StudentH2Service implements StudentRepository {
                 "SELECT * FROM STUDENT WHERE studentName = ? and gender = ? and standard = ?", new StudentRowMapper(),
                 student.getStudentName(), student.getGender(), student.getStandard());
         return savedStudent;
+
+    }
+
+    @Override
+    public String addMultipleStudents(List<Student> students) {
+        int count =0;
+        for (Student student: students){
+            db.update("INSERT INTO STUDENT(studentName, gender, standard) values (?,?,?)", student.getStudentName(),
+            student.getGender(), student.getStandard());
+            count++;
+        }
+        String msg= String.format("Successfully added %d students", count);
+        return msg;
 
     }
 

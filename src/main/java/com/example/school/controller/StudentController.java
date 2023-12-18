@@ -13,18 +13,23 @@ public class StudentController {
     StudentH2Service studentH2Service;
 
     @GetMapping("/students")
-    public ArrayList<Student> addStudent() {
-        return studentH2Service.addStudent();
-    }
-
-    @GetMapping("/students/{studentId}")
-    public Student getStudentById(@PathVariable("studentId") int studentId) {
-        return studentH2Service.getStudentById(studentId);
+    public ArrayList<Student> getAllStudents() {
+        return studentH2Service.getAllStudents();
     }
 
     @PostMapping("/students")
     public Student addStudent(@RequestBody Student student) {
         return studentH2Service.addStudent(student);
+    }
+
+    @PostMapping("/students/bulk")
+    public String addMultipleStudents(@RequestBody List<Student> students) {
+        return studentH2Service.addMultipleStudents(students);
+    }
+
+    @GetMapping("/students/{studentId}")
+    public Student getStudentById(@PathVariable("studentId") int studentId) {
+        return studentH2Service.getStudentById(studentId);
     }
 
     @PutMapping("/students/{studentId}")
