@@ -1,17 +1,18 @@
 package com.example.school.model;
 
-public class Student{
+public class Student {
     private int studentId;
     private String studentName;
     private String gender;
     private String standard;
 
-    public Student(int studentId, String studentName, String gender, String standard){
+    public Student(int studentId, String studentName, String gender, String standard) {
         this.studentId = studentId;
         this.studentName = studentName;
         this.gender = gender;
         this.standard = standard;
     }
+
     public int getStudentId() {
         return studentId;
     }

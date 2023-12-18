@@ -23,16 +23,22 @@ public class StudentH2Service implements StudentRepository {
     }
 
     @Override
-    public Student getStudentById(int studentId){
-        try{
-            Student student = db.queryForObject("SELECT * FROM STUDENT WHERE studentId = ?", new StudentRowMapper(), studentId);
+    public Student getStudentById(int studentId) {
+        try {
+            Student student = db.queryForObject("SELECT * FROM STUDENT WHERE studentId = ?", new StudentRowMapper(),
+                    studentId);
             return student;
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
     }
-    
 
+    @Override
+    public Student addStudent(Student student){
+        db.update("INSERT INTO STUDENT(studentName, gender, standard) values (?,?,?)", student.getStudentName(), student.getGender(), student.getStandard());
+        Student savedStudent = db.queryForObject("SELECT * FROM STUDENT WHERE studentName = ? and gender = ? and standard = ?", new StudentRowMapper(), student.getStudentName(), student.getGender(), student.getStandard());
+        return savedStudent;
 
+    }
 
 }
