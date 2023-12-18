@@ -22,4 +22,17 @@ public class StudentH2Service implements StudentRepository {
         return students;
     }
 
+    @Override
+    public Student getStudentById(int studentId){
+        try{
+            Student student = db.queryForObject("SELECT * FROM STUDENT WHERE studentId = ?", new StudentRowMapper(), studentId);
+            return student;
+        } catch (Exception e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+    
+
+
+
 }
