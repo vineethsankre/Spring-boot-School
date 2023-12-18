@@ -1,1 +1,15 @@
-// Write your code here
+package com.example.school.repository;
+
+import com.example.school.model.*;
+import java.util.*;
+
+public interface StudentRepository{
+    ArrayList<Student> addStudent();
+
+    Student getStudentById(int studentId);
+
+    Student addStudent(Student student);
+
+    Student updateStudent(int studentId, Student student);
+    void deleteStudent(int studentId);
+}
