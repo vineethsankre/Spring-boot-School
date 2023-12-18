@@ -34,14 +34,18 @@ public class StudentH2Service implements StudentRepository {
     }
 
     @Override
-    public Student addStudent(Student student){
-        db.update("INSERT INTO STUDENT(studentName, gender, standard) values (?,?,?)", student.getStudentName(), student.getGender(), student.getStandard());
-        Student savedStudent = db.queryForObject("SELECT * FROM STUDENT WHERE studentName = ? and gender = ? and standard = ?", new StudentRowMapper(), student.getStudentName(), student.getGender(), student.getStandard());
+    public Student addStudent(Student student) {
+        db.update("INSERT INTO STUDENT(studentName, gender, standard) values (?,?,?)", student.getStudentName(),
+                student.getGender(), student.getStandard());
+        Student savedStudent = db.queryForObject(
+                "SELECT * FROM STUDENT WHERE studentName = ? and gender = ? and standard = ?", new StudentRowMapper(),
+                student.getStudentName(), student.getGender(), student.getStandard());
         return savedStudent;
 
     }
-    @Override 
-    public Student updateStudent(int studentId, Student student){
+
+    @Override
+    public Student updateStudent(int studentId, Student student) {
         if (student.getStudentName() != null) {
             db.update("UPDATE STUDENT SET studentName = ? WHERE studentId = ?", student.getStudentName(), studentId);
         }
@@ -56,7 +60,7 @@ public class StudentH2Service implements StudentRepository {
     }
 
     @Override
-    public void deleteStudent(int studentId){
+    public void deleteStudent(int studentId) {
         db.update("DELETE FROM STUDENT WHERE studentId = ?", studentId);
     }
 
