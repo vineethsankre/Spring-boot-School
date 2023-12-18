@@ -55,4 +55,9 @@ public class StudentH2Service implements StudentRepository {
         return getStudentById(studentId);
     }
 
+    @Override
+    public void deleteStudent(int studentId){
+        db.update("DELETE FROM STUDENT WHERE studentId = ?", studentId);
+    }
+
 }
